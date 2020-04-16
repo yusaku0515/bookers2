@@ -1,0 +1,21 @@
+<!-- 画像投稿画面 -->
+<h2>User info</h2>
+
+<%= foem_for(@user_image,url: user_images_path) do |f| %>
+ <% if @user_image.errors.any? %>
+ <div id="error_explanation">
+  <h2><%= @user_image.errors.count %>errors prohibited this obj from being saved:</h2>
+  <ul>
+   <% @user_image.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
+ <% end %>
+ <p>Name</p>
+ <%= f.text_field :name, class:"form-control", placeholder:"name" %>
+ <p>Image</p>
+ <%= f.attachment_field :image %>
+ <p>Introduction</p>
+ <%= f.submit "Update User" %>
+<% end %>
