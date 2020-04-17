@@ -1,0 +1,13 @@
+<!-- bookの詳細画面 -->
+<h2>Book detail</h2>
+
+<table>
+
+ <tbody>
+
+   <%= attachment_image_tag @user_image, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %>
+   <%= @user.title %>
+   <%= @user.opinion %>
+
+ </tbody>
+</table>

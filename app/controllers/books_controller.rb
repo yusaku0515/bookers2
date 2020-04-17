@@ -1,10 +1,20 @@
 class BooksController < ApplicationController
-	def new #bookの投稿画面を表示
+	def new
 	end
 	def create #bookの投稿を保存
+	  @book = Book.new(book_params)
+	  @book.save
+	  rederect_to books_path(@book.id)
 	end
-	def index #bookの投稿リストを表示
+	def index
+	  @book = Book.all
+	  @books = Book.new
 	end
     def show #bookの投稿の詳細を表示
+    end
+
+    private
+    def book_params
+    	params.require(:book).permit(:title, :opinion)
     end
 end

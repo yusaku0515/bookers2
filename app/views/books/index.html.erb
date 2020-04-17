@@ -1,0 +1,19 @@
+<!-- home画面 -->
+<h2>Books</h2>
+
+<table>
+ <thead>
+  <h3>Title</h3>
+
+  <h3>Opinion</h3>
+ </thead>
+ <tbody>
+ <% @book.each do |book| %>
+  <tr>
+   <td class="user"><%= attachment_image_tag @user_image, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %></td>
+   <td class="title"><%= @book.title %></td>
+   <td class="Opinion"><%= @user.opinion %></td>
+  </tr>
+ <% end %>
+ </tbody>
+</table>

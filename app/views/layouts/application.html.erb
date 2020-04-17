@@ -11,37 +11,39 @@
 
   <body>
     <div class="header" id="header">
-      <nav class="navbar navbar-main navbar-shadow" role="navigation" id="slide-nav">
-        <div class="container relative">
-          <div class="navbar-header">
-           <h2>Bookers</h2>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div id="slidemenu">
-            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-              <li class="">
-               <%= link_to 'マイページ', user_path(current_user.id) %>
-              </li>
-              <li class="">
-                <a href="">
-                  <span>新規登録</span>
-                </a>
-              </li>
-              <li class="">
-                <a href="">
-                  <span>ログイン</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+     <h2>Bookers</h2>
     </div>
+     <div id="headermenu">
+      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+       <li class="">
+        <a>Home</a>
+       </li>
+       <li class="">
+        <a>User</a>
+       </li>
+       <li class="">
+        <a>Books</a>
+       </li>
+       <li class="">
+        <a>logout</a>
+       </li>
+      </ul>
+     </div>
+     <div class="sidemenu">
+      <h2>User info</h2>
+      <%= attachment_image_tag @user_image, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %>
+      <p>name</p>
+      <p>introduction</p>
+      <!-- 投稿フォーム -->
+      <h2>New book</h2>
+      <%= form_for(@books) do |f| %>
+       <h4>Title</h4>
+       <%= f.text_field :title %>
+       <h4>Opinion</h4>
+       <%= f.text_area :body %>
+       <%= f.submit 'Create Book' %>
+      <% end %>
+     </div>
     <%= yield %>
    <footer class="footer style-2">
     <p class="no-margin" style="font-size: 11px;">
