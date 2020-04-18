@@ -12,7 +12,7 @@
   <tr>
    <td class="user"><%= attachment_image_tag @user_image, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %></td>
    <td class="title"><%= @book.title %></td>
-   <td class="Opinion"><%= @user.opinion %></td>
+   <td class="Opinion"><%= @book.body %></td>
   </tr>
  <% end %>
  </tbody>

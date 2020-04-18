@@ -1,4 +1,7 @@
 class UserController < ApplicationController
+	def index
+	    @book = Book.all
+	end
 	def show
 		@user = User.find(params[:id])
 		@books = @user.books.page(params[:page]).revewse_order
@@ -15,6 +18,6 @@ class UserController < ApplicationController
 
 	private
 	def user_image_params
-		params.require(:user_image).permit(:book_name, :image, :caption)
+		params.require(:user_image).permit(:book_name, :image)
 	end
 end

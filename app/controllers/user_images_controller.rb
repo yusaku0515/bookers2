@@ -5,6 +5,9 @@ class UserImagesController < ApplicationController
 	def index
 		@user_image = UserImage.all
 	end
+	def show
+		@user_image = UserImage.find(params[:id])
+	end
 	def create
 		@user_image = UserImage.new(user_image_params)
 		@user_image.user_id = current_user.id
@@ -13,6 +16,6 @@ class UserImagesController < ApplicationController
 	end
 	private
     def post_image_params
-        params.require(:post_image).permit(:shop_name, :image, :caption)
+        params.require(:post_image).permit(:image, :caption)
     end
 end
