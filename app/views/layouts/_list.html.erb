@@ -1,17 +1,17 @@
 <!-- サイドバー -->
 
 <h2>User info</h2>
- <%= attachment_image_tag user_image_url.user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb" %>
+ <%= attachment_image_tag user_image_url.user, :profile_image, :fill, 60, 60 %>
 <p>name</p>
 
 <p>introduction</p>
-<%= @user.body %>
+
 <!-- 投稿フォーム -->
 <h2>New book</h2>
 <%= form_for(book) do |f| %>
  <h4>Title</h4>
  <%= f.text_field :title %>
  <h4>Opinion</h4>
- <%= f.text_area :body %>
+ <%= f.text_area :body %><br>
  <%= f.submit 'Create Book' %>
 <% end %>

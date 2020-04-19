@@ -1,19 +1,22 @@
 class BooksController < ApplicationController
 	def index
-	  @book = Book.all
+	  @books = Book.all #bookの一覧表示に使う
+	  @book = Book.new #bookの新規投稿に使う
 	end
 
-	def new
+	def edit
+	  @book = Book.find(params[:id])
 	end
 
 	def create #bookの投稿を保存
 	  @book = Book.new(book_params)
 	  @book.save
-	  rederect_to books_path(@book.id)
+	  redirect_to book_path(@book.id)
 	end
 
     def show #bookの投稿の詳細を表示
       @book = Book.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     private
