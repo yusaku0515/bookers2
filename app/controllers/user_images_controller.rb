@@ -15,7 +15,7 @@ class UserImagesController < ApplicationController
 		redirect_to user_images_path
 	end
 	private
-    def post_image_params
-        params.require(:post_image).permit(:image, :caption)
+    def user_image_params
+        params.require(:user_image).permit(:image, :caption)
     end
 end
