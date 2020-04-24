@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
 
   attachment :profile_image
+
+  def user
+  	  return User.find_by(id: self.user_id)
+  end
 end
