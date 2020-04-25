@@ -28,7 +28,7 @@
            <span class="glyphicon glyphicon-book" aria-hidden="true"><%= link_to "Books", books_path %></span>
           </li>
           <li class="">
-           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete %></span>
+           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete, notice: "Signed out successfully." %></span>
           </li>
           <% else %>
           <li>
@@ -38,10 +38,10 @@
            <span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to "About", about_path %></span>
           </li>
           <li>
-           <span class="glyphicon glyphicon-edit" aria-hidden="true"><a>sign up</a></span>
+           <span class="glyphicon glyphicon-edit" aria-hidden="true"><%= link_to "sign up", new_user_registration_path %></span>
           </li>
           <li>
-           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><a>log in</a></span>
+           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "login", new_user_session_path %></span>
           </li>
           <% end %>
          </ul>
@@ -53,9 +53,17 @@
 
     <%= yield %>
    <footer class="footer style-2">
-    <p class="no-margin" style="font-size: 11px;">
-      CopyRight Infratop.inc
-    </p>
+    <div class="container">
+     <div class="row">
+      <div class="col-xs-3">
+       <div class="col">
+        <p class="no-margin" style="font-size: 11px;">
+         CopyRight Infratop.inc
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
    </footer>
   </body>
 </html>

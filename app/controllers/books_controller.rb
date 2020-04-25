@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 	def index
 	  @books = Book.all #bookの一覧表示に使う
 	  @book = Book.new #bookの新規投稿に使う
+	  @user = User.find_by(id: params[:id])
 	end
 
 	def edit
@@ -24,6 +25,8 @@ class BooksController < ApplicationController
     def show #bookの投稿の詳細を表示
       @book = Book.new
       @books = Book.find_by(id: params[:id])
+      @username = current_user.name
+      @user = User.find_by(id: params[:id])
     end
 
     def update
