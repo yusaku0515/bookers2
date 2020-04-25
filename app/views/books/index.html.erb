@@ -1,34 +1,15 @@
 <!-- booklist -->
 <div class="container">
  <div class="row">
-  <div class="col-lg-3" style="background-color: orange;">
-      <!-- サイドバー -->
-   <h2>User info</h2>
-   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "profile1.jpg", size: "60x60" %>
-   <p>name</p>
-    <%= @username %>
-   <p>introduction</p>
-    <%= @userintroduction %><br>
-   <% if user_signed_in? && current_user.id == user_session %>
-    <%= link_to "編集", edit_user_path(@user.id) %>
-   <% end %>
-   <!-- 投稿フォーム -->
-   <h2>New book</h2>
-   <%= form_for(@book) do |f| %>
-    <h4>Title</h4>
-    <%= f.text_field :title %>
-    <h4>Opinion</h4>
-    <%= f.text_area :body %><br>
-    <button type="button" class="btn btn-primary">
-     <%= f.submit 'Create Book' %>
-    </button>
-   <% end %>
+  <div class="col-lg-3">
+   <%= render 'layouts/list', book: @book %>
   </div>
-  <div class="col-lg-9" style="background-color: red;">
+  <div class="col-lg-9">
    <h2>Books</h2>
-   <table>
+   <table class="table table-hover table-inverse">
    	<thead>
    	 <tr>
+      <th></th>
    	  <th>Title</th>
    	  <th>Opinion</th>
    	 </tr>

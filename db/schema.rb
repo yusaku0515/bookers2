@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_142314) do
+ActiveRecord::Schema.define(version: 2020_04_25_135655) do
 
-  create_table "books", force: :cascade do |t|
-    t.text "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
+# Could not dump table "books" because of following StandardError
+#   Unknown type 'storing' for column 'name'
 
   create_table "user_images", force: :cascade do |t|
     t.text "user_name"
