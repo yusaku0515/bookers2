@@ -12,14 +12,12 @@
    <h2>User info</h2>
    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "profile1.jpg", size: "60x60" %>
    <h4>name</h4>
-   <%= current_user.name %>
+   <%= @user.name %>
    <h4>introduction</h4>
-   <%= current_user.introduction %>
-   <% if current_user.id == @user_id %>
+   <%= @user.introduction %><br>
     <button type="button" class="btn btn-default">
-     <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= link_to "a", edit_user_path(@user.id) %></span>
+     <span class="glyphicon glyphicon-wrench" aria-hidden="true"><%= link_to "a", edit_user_path(current_user.id) %></span>
     </button>
-   <% end %>
    <!-- 投稿フォーム -->
    <h2>New book</h2>
    <%= form_for(@book) do |f| %>

@@ -5,7 +5,7 @@ class Book < ApplicationRecord
     validates :body, presence: true, length: { maximum: 200 }
     validates :body, presence: true
 
-	def user
-		return User.find_by(id: self.user_id)
-	end
+	# def user
+	# 	return User.find_by(id: self.user_id)
+	# end
 end
