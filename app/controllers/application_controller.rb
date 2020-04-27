@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
 		devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
 	end
+
+	def login_required #非ログインユーザーへの機能制限（見れなくする） books_controllerにも記載あり
+		redirect_to login_path unless current_user
+	end
 end

@@ -2,14 +2,21 @@ class BooksController < ApplicationController
    before_action :authenticate_user!,{only:[:edit, :index, :show]} #ログインしていないと見れない　アクセス権限　表示させたくない物を選択する
 
 
+
+
+
 	def index
 	  @books = Book.all #bookの一覧表示に使う
 	  @book = Book.new #bookの新規投稿に使う
-	  @user = User.find_by(id: params[:id])
 	end
 
-	def edit
-	  @book = Book.find(params[:id])
+	def edit #他人が編集画面に行けないようにする
+	       @book = Book.find(params[:id])
+           if @book.user_id == current_user.id
+           render "edit"
+        else
+           redirect_to books_path
+        end
 	end
 
 	def create #bookの投稿を保存

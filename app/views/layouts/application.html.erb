@@ -16,7 +16,7 @@
        <div class="navbar-header">
         <h2 style="color: white;">Bookers</h2>
         <div id="headermenu">
-         <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
           <li class="">
            <span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", user_path(current_user.id) %></span>

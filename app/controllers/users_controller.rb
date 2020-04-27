@@ -1,13 +1,7 @@
 class UsersController < ApplicationController
   # アクセス制限（ユーザー編集）の為に追加
     before_action :authenticate_user!,{only:[:edit, :index, :show]} #authenticate_user! ー＞コントローラーに設定して、ログイン済ユーザーのみにアクセスを許可する
-    before_action :ensure_correct_user,{only:[:edit]}
 
-    def ensure_correct_user
-        if current_user.id != params[:id].to_i
-           redirect_to book_path(@book.id)
-        end
-    end
 
   def index
   	@users = User.all
@@ -23,6 +17,11 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find(params[:id])
+    if @user.id == current_user.id
+       render "edit"
+    else
+       redirect_to user_path(current_user)
+    end
   end
 
   def update
