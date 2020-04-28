@@ -1,5 +1,5 @@
 <!-- ユーザ登録画面 -->
-
+<div class="container">
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -32,5 +32,5 @@
     <%= f.submit "Sign up", notice: "Welcome! You have signed up successfully." %>
   </div>
 <% end %>
-
+</div>
 <%= render "devise/shared/links" %>

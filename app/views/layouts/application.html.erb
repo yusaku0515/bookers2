@@ -10,52 +10,39 @@
   </head>
 
   <body>
-    <div class="header" id="header" style="background-color: black;">
-     <nav class="navbar navbar-main navbar-shadow" role="navigation" id="slide-nav">
-      <div class="container relative">
-       <div class="navbar-header">
+    <div style="height: 60px;"> 
+     <nav class="navbar navbar-inverse navbar-fixed-top"> 
+      <div class="container">
+       <nav class="nav navbar-nav navbar-left">
         <h2 style="color: white;">Bookers</h2>
-        <div id="headermenu">
-         <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-          <li class="">
-           <span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", user_path(current_user.id) %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-user" aria-hidden="true"><%= link_to "Users", users_path %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-book" aria-hidden="true"><%= link_to "Books", books_path %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "logout", destroy_user_session_path, method: :delete, notice: "Signed out successfully." %></span>
-          </li>
+       </nav>
+       <nav>
+        <ul class="nav navbar-nav navbar-right">
+         <% if user_signed_in? %>
+          <li><%= link_to "Home", user_path(current_user.id), class:"glyphicon glyphicon-home"  %></li>
+          <li><%= link_to "Users", users_path, class:"glyphicon glyphicon-user" %></li>
+          <li><%= link_to "Books", books_path, class:"glyphicon glyphicon-book" %></li>
+          <li><%= link_to "logout", destroy_user_session_path, class:"glyphicon glyphicon-log-out", method: :delete, notice: "Signed out successfully." %></li>
           <% else %>
-          <li class="">
-           <span class="glyphicon glyphicon-home" aria-hidden="true"><%= link_to "Home", root_path %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-link" aria-hidden="true"><%= link_to "About", home_about_path %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-edit" aria-hidden="true"><%= link_to "sign up", new_user_registration_path %></span>
-          </li>
-          <li class="">
-           <span class="glyphicon glyphicon-log-out" aria-hidden="true"><%= link_to "login", new_user_session_path %></span>
-          </li>
-          <% end %>
-         </ul>
-        </div>
-       </div>
+          <li><%= link_to "Home", root_path, class:"glyphicon glyphicon-home" %></li>
+          <li><%= link_to "About", home_about_path, class:"glyphicon glyphicon-link" %></li>
+          <li><%= link_to "sign up", new_user_registration_path, class:"glyphicon glyphicon-edit" %></li>
+          <li><%= link_to "login", new_user_session_path, class:"glyphicon glyphicon-log-out" %></li>
+         <% end %>
+        </ul>
+       </nav>
       </div>
      </nav>
     </div>
-
-    <%= yield %>
+    <div class='body'> 
+     <div class='container'> 
+      <%= yield %>     
+     </div>
+    </div> 
    <footer class="footer style-2">
     <div class="container">
      <div class="row">
-      <div class="col-xs-3">
+      <div class="col-xs-3 col-xs-offset-9">
        <div class="col">
         <p class="no-margin" style="font-size: 11px;">
          CopyRight Infratop.inc

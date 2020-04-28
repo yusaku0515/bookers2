@@ -1,5 +1,5 @@
 <!-- ログイン機能 -->
-
+<div class="container">
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,5 +24,5 @@
     <%= f.submit "Log in", notice: "Welcome! You have signed up successfully." %>
   </div>
 <% end %>
-
+</div>
 <%= render "devise/shared/links" %>
