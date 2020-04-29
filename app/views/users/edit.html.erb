@@ -14,10 +14,10 @@
  </div>
  <% end %>
  <p>Name</p>
- <%= f.text_field :name, class:"form-control", placeholder:"name" %>
+ <%= f.text_field :name, placeholder:"name" %>
  <p>Image</p>
  <%= f.attachment_field :profile_image %>
  <p>Introduction</p>
- <%= f.text_area :introduction %>
+ <%= f.text_area :introduction %><br>
  <%= f.submit "Update User" %>
 <% end %>
