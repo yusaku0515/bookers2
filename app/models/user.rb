@@ -14,7 +14,26 @@ class User < ApplicationRecord
 
   validates :introduction, presence: true, length: { maximum: 50 }, allow_blank: true
 
-  # def user
-  # 	  return User.find_by(id: self.user_id)
-  # end
+  #フォローできるユーザーを取り出すに記述
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  #フォローしているユーザーを取り出す （user.followingsをできるようにする）
+  has_many :followings, through: :following_relationships
+
+  #フォローされているユーザーを取り出す（user.follwersをできるようにする）
+  has_many :follower_relationships, foreign_key: "following_id",class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
+
+  #user.rbにフォローする関数、フォローしているか調べるための関数、フォローを外す関数を作成
+  def following?(other_user)
+    following_relationships.find_by(following_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    following_relationships.create!(following_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    following_relationships.find_by(following_id: other_user.id).destroy
+  end
+
 end
