@@ -1,11 +1,12 @@
 <div class="container">
+ <% if flash[:notice] %><!-- サクセスメッセージ -->
+  <div class="flash">
+   <%= flash[:notice] %>
+  </div>
+ <% end %>
  <div class="row">
   <div class="col-md-offset-3 col-md-6">
-   <% if flash[:notice] %><!-- サクセスメッセージ -->
-    <div class="flash">
-     <%= flash[:notice] %>
-    </div>
-   <% end %>
+
    <h1>welcome to
    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
    Bookers   !!</h1>

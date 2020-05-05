@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	 #ログイン認証されてないとログイン画面へリダイレクトする
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	def after_sign_up_path_for(resource)
-		user_path(resource)
+		user_path(resource) #root_pathでも可
 	end
 	def after_sign_in_path_for(resource)
 		user_path(resource)

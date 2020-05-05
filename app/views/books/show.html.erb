@@ -16,7 +16,7 @@
       <% end %>
     </ul>
   </div>
-<% end %>
+  <% end %>
  <div class="row">
   <div class="col-xs-3">
    <%= render 'layouts/list', book: @book %>
@@ -35,6 +35,28 @@
           </td>
       <td><%= @books.title %></td>
       <td><%= @books.body %></td>
+      <td>
+        <% if @books.favorited_by?(current_user) %>
+
+         <%= link_to book_favorites_path(@books),method: :delete do %>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+          <%= @books.favorites.count %>
+         <% end %>
+
+        <% else %>
+
+         <%= link_to book_favorites_path(@books), method: :post do %>
+         <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+         <%= @books.favorites.count %>
+         <% end %>
+
+        <% end %>
+      </td>
+      <td>
+       コメント数:<%= @books.book_comments.count %>
+      </td>
+
+
        <% if current_user.id == @books.user_id %>
       <td><button type="button" class="btn btn-success"><%= link_to "Edit", edit_book_path(@books), class:"text-muted" %></button></td>
      <td><button type="button" class="btn btn-danger"><%= link_to "Destroy", book_path(@books), class:"text-muted", method: :delete %></button></td>
@@ -42,6 +64,26 @@
      </tr>
     </tbody>
    </table>
+            <!-- コメント入力フォーム -->
+     <%= form_for [@books, @book_comment] do |f| %>
+      <div class="row">
+       <%= f.text_area :comment, rows:'5', class: "form-control" %>
+      </div>
+      <%= f.submit "送信", class: "pull-right" %>
+      <% end %>
+      <!-- コメント一覧 -->
+      <table class="table table-inverse">
+       <% @books.book_comments.each do |book_comment| %>
+       <tr>
+        <td><%= book_comment.comment %></td>
+         <% if current_user == book_comment.user %>
+         <td>
+          <button type="button" class="btn btn-danger"><%= link_to "Destroy", book_book_comments_path(book_comment), class:"text-muted", method: :delete %></button>
+         </td>
+         <% end %>
+        <% end %>
+       </tr>
+      </table>
   </div>
  </div>
 </div>

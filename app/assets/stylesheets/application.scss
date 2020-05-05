@@ -15,3 +15,17 @@
  */
     @import "bootstrap-sprockets";
     @import "bootstrap";
+
+#container{
+	height: 300px;
+}
+
+.book1 {
+background-image: url(book1.jpg);
+}
+.book2 {
+background-image: url(book2.jpg);
+}
+.book3 {
+background-image: url(book3.jpg);
+}

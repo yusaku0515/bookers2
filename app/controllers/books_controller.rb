@@ -2,12 +2,10 @@ class BooksController < ApplicationController
    before_action :authenticate_user!,{only:[:edit, :index, :show]} #ログインしていないと見れない　アクセス権限　表示させたくない物を選択する
 
 
-
-
-
 	def index
 	  @books = Book.all #bookの一覧表示に使う
 	  @book = Book.new #bookの新規投稿に使う
+
 	end
 
 	def edit #他人が編集画面に行けないようにする
@@ -34,6 +32,7 @@ class BooksController < ApplicationController
       @book = Book.new
       @books = Book.find(params[:id])
       @user = @books.user
+      @book_comment = BookComment.new
     end
 
     def update
