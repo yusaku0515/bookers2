@@ -13,34 +13,10 @@
  <div class="row">
   <div class="col-xs-3">
    <!-- サイドバー -->
-   <h2>User info</h2>
-   <%= attachment_image_tag current_user, :profile_image, :fill, 60, 60, fallback: "profile1.jpg", size: "100x100" %>
-   <table class="table">
-    <tbody>
-    <tr>
-     <th>name</th>
-     <th><%= current_user.name %></th>
-    </tr>
-    <tr>
-     <th>introduction</th>
-     <th><%= current_user.introduction %><br></th>
-    </tr>
-    </tbody>
-   </table>
-   <%= link_to edit_user_path(current_user.id) do %>
-    <button type="button" class="btn btn-default btn-block">
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-    </button>
-    <% end %>
-   <!-- 投稿フォーム -->
+  <h2>User info</h2>
+   <%= render 'info', user: current_user %>
    <h2>New book</h2>
-   <%= form_for(@book) do |f| %>
-    <h4>Title</h4>
-    <%= f.text_field :title, class:"form-control" %>
-    <h4>Opinion</h4>
-    <%= f.text_area :body, class:"form-control" %><br>
-    <%= f.submit 'Create Book', class:"btn btn-primary btn-block" %>
-   <% end %>
+   <%= render 'books/form', book: @book %>
   </div>
   <div class="col-xs-9">
    <h2>Users</h2>
@@ -57,6 +33,24 @@
       <tr>
        <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "profile1.jpg", size: "40x40" %></td>
        <td><%= user.name %></td>
+       <td>フォロー数：<%= user.followings.count %></td>
+       <td>フォロワー数：<%= user.followers.count %></td>
+       <!-- フォローボタン -->
+       <td>
+        <% unless current_user?(user) %> <!-- フォローボタンが表示されるかどうか -->
+         <% if current_user.following?(user) %>
+          <%= form_for(current_user.following_relationships.find_by(following_id: user.id), html: {method: :delete}) do |f| %>
+           <%= f.submit "フォローを外す" %>
+          <% end %>
+         <% else %>
+          <%= form_for(current_user.following_relationships.build(following_id: user.id)) do |f| %>
+           <div><%= f.hidden_field :following_id %></div>
+           <%= f.submit "フォローする" %>
+          <% end %>
+         <% end %>
+        <% end %>
+       </td>
+     <!-- フォローボタン -->
        <td><%= link_to "Show", user_path(user.id), class:"text-muted" %></td>
       </tr>
      <% end %>

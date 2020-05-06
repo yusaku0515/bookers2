@@ -19,7 +19,10 @@
   <% end %>
  <div class="row">
   <div class="col-xs-3">
-   <%= render 'layouts/list', book: @book %>
+    <h2>User info</h2>
+   <%= render 'users/info', user: @books.user %>
+   <h2>New book</h2>
+   <%= render 'form', book: @book %>
   </div>
 
   <div class="col-xs-9">
@@ -64,17 +67,16 @@
      </tr>
     </tbody>
    </table>
-            <!-- コメント入力フォーム -->
-     <%= form_for [@books, @book_comment] do |f| %>
-      <div class="row">
-       <%= f.text_area :comment, rows:'5', class: "form-control" %>
-      </div>
-      <%= f.submit "送信", class: "pull-right" %>
-      <% end %>
       <!-- コメント一覧 -->
       <table class="table table-inverse">
        <% @books.book_comments.each do |book_comment| %>
        <tr>
+        <td>
+            <%= link_to user_path(book_comment.user), class: "user_#{book_comment.user.id}" do %>
+              <%= attachment_image_tag book_comment.user, :profile_image, :fill, 50, 50, fallback: "profile1.jpg", size: "50x50" %><br>
+              <%= book_comment.user.name %>
+            <% end %>
+          </td>
         <td><%= book_comment.comment %></td>
          <% if current_user == book_comment.user %>
          <td>
@@ -84,6 +86,13 @@
         <% end %>
        </tr>
       </table>
+                  <!-- コメント入力フォーム -->
+    <div class="comment-form">
+     <%= form_for [@books, @book_comment] do |f| %>
+       <%= f.text_area :comment, size: "90x5" %>
+      <%= f.submit "送信" %>
+      <% end %>
+    </div>
   </div>
  </div>
 </div>
