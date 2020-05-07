@@ -36,4 +36,30 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: other_user.id).destroy
   end
 
+  #searchメソッドの定義
+  def self.search(method,word)
+    if method == "forward_match"           # %をつける位置に注意!
+        @users = User.where("name LIKE?","#{word}%")
+
+    elsif method == "backward_match"
+        @users = User.where("name LIKE?","%#{word}")
+
+    elsif method == "perfect_match"
+        @users = User.where("#{word}")
+
+    elsif method == "partial_match"
+        @users = User.where("name LIKE?","%#{word}%")
+
+    else
+        @users = User.all
+    end
+  end
+  #ユーザー名による絞り込み
+  scope :get_by_name, ->(name) {
+    where("name LIKE?","%#{name}%")
+  }
+  #bookのtitleによる絞り込み
+  scope :get_by_name, ->(title) {
+    where("title LIKE?","%#{title}%")
+  }
 end

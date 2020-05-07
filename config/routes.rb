@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searchs/search'
   get 'relationships/create'
   get 'relationships/destroy'
   devise_for :users #上の方が優先順位が上がる
