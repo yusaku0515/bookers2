@@ -38,28 +38,27 @@ class User < ApplicationRecord
 
   #searchメソッドの定義
   def self.search(method,word)
+    if @search_content = "User"
     if method == "forward_match"           # %をつける位置に注意!
-        @users = User.where("name LIKE?","#{word}%")
+        User.where('name LIKE ?',"#{word}%")
 
     elsif method == "backward_match"
-        @users = User.where("name LIKE?","%#{word}")
+        User.where('name LIKE ?',"%#{word}")
 
     elsif method == "perfect_match"
-        @users = User.where("#{word}")
+        User.where("#{word}")
 
     elsif method == "partial_match"
-        @users = User.where("name LIKE?","%#{word}%")
+        User.where('name LIKE ?',"%#{word}%")
 
     else
-        @users = User.all
+        User.all
     end
+  end
   end
   #ユーザー名による絞り込み
   scope :get_by_name, ->(name) {
     where("name LIKE?","%#{name}%")
   }
-  #bookのtitleによる絞り込み
-  scope :get_by_name, ->(title) {
-    where("title LIKE?","%#{title}%")
-  }
+
 end
