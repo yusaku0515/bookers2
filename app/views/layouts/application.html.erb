@@ -40,6 +40,7 @@
     <div class='body'> 
      <div class='container'> 
       <!-- 検索機能 -->
+      <div style="text-align:center;">
       <% if user_signed_in? %>
       <%= form_tag searchs_search_path, :method => 'get' do %>
        <%= text_field_tag :search %>
@@ -48,6 +49,7 @@
        <%= submit_tag 'search' %>
       <% end %>
       <% end %>
+      </div>
       <%= yield %>   <!--これがないと別のビューを持ってくる事ができない -->
      </div>
     </div> 
