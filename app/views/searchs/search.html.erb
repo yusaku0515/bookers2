@@ -1,3 +1,4 @@
+<% if @user_or_book == "name" %>
 <h2>Users index</h2>
 <table class="table table-inverse">
 <thead>
@@ -15,8 +16,29 @@
  <td><%= link_to "Show", user_path(user.id), class:"text-muted" %></td>
 </tr>
 <% end %>
+</tbody>
+</table>
+
+<% elsif @user_or_book == "title" %>
+
+<h2>Books index</h2>
+<table class="table table-inverse">
+<thead>
+<tr>
+ <th></th>
+ <th>Title</th>
+ <th>Opinion</th>
+</tr>
+</thead>
+<tbody>
 <% @books.each do |book| %>
- <% book.title %>
+<tr>
+ <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "profile1.jpg", size: "100x100" %></td>
+ <td><%= book.title %></td>
+ <td><%= book.body %></td>
+</tr>
 <% end %>
 </tbody>
 </table>
+<% else %>
+<% end %>

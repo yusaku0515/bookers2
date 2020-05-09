@@ -12,19 +12,19 @@ class Book < ApplicationRecord
 
 
   #searchメソッドの定義
-  def self.search(method,word)
-  	if @search_content = "Book"
-    if method == "forward_match"           # %をつける位置に注意!
-        Book.where('title LIKE ?',"#{word}%")
+  def Book.search(search, user_or_book, how_search)
+  	if user_or_book == "title"
+    if how_search == "forward_match"           # %をつける位置に注意!
+        Book.where('title LIKE ?',"#{search}%")
 
-    elsif method == "backward_match"
-        Book.where('title LIKE ?',"%#{word}")
+    elsif how_search == "backward_match"
+        Book.where('title LIKE ?',"%#{search}")
 
-    elsif method == "perfect_match"
-        Book.where("#{word}")
+    elsif how_search == "perfect_match"
+        Book.where('title LIKE ?',"#{search}")
 
-    elsif method == "partial_match"
-        Book.where('title LIKE ?',"%#{word}%")
+    elsif how_search == "partial_match"
+        Book.where('title LIKE ?',"%#{search}%")
 
     else
         Book.all
